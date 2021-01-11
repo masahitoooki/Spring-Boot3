@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+    <form action="/post">
+    	<table>
+    		<tr>
+    			<th>名前</th>
+    			<th>住所</th>
+    			<th>電話番号</th>
+    		</tr>
+    		<tr th:each="member, stat : ${paramObject.members}">
+    			<td><input type="text" th:name="'members[' + ${stat.index} + '].name'"th:value="${member.name}" /></td>
+    			<td><input type="text" th:name="'members[' + ${stat.index} + '].address'"th:value="${member.address}" /></td>
+    			<td><input type="text" th:name="'members[' + ${stat.index} + '].telno'" th:value="${member.telno}"/></td>
+
+    		</tr>
+    	</table>
+    	<button type="submit">送信</button>
+    </form>
+    <table>
+    	<tr th:each="row : ${result}">
+    		<td th:text="${row.name}"></td>
+    		<td th:text="${row.address}"></td>
+    		<td th:text="${row.telno}"></td>
+    </table>
+</body>
+</html>
